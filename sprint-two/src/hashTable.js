@@ -1,4 +1,4 @@
-
+ 
 
 var HashTable = function() {
   this._limit = 8;
@@ -9,14 +9,14 @@ var HashTable = function() {
 
 HashTable.prototype.insert = function(k, v) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  if (this.collision[index] === undefined){
+  if (this.collision[index] === undefined) {
     this.collision[index] = {};
-    this.collision[index][k]=v;  
+    this.collision[index][k] = v;  
     this._storage.set(index, v);
-    } else {
-    this.collision[index][k]=v;  
+  } else {
+    this.collision[index][k] = v;  
     this._storage.set(index, v);
-    } 
+  } 
 };
 
 HashTable.prototype.retrieve = function(k) {

@@ -1,11 +1,11 @@
-var LinkedList = function() {
+var LinkedList = function() { 
   var list = {};
   list.head = null;
   list.tail = null;
 
   list.addToTail = function(value) {
-    var newNode = Node(value)
-    if(list.head){
+    var newNode = Node(value);
+    if (list.head) {
       list.tail.next = newNode;
       list.tail = newNode;
       
@@ -22,14 +22,14 @@ var LinkedList = function() {
   };
 
   list.contains = function(target) {
-  var current = list.head;
-  while (current.value !== target) {
-    if (current === list.tail) {
-      return false;
+    var current = list.head;
+    while (current.value !== target) {
+      if (current === list.tail) {
+        return false;
+      }
+      current = current.next;
     }
-    current = current.next;
-  }
-  return true;
+    return true;
   };
 
   return list;

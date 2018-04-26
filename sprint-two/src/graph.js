@@ -1,5 +1,5 @@
 
-
+ 
 // Instantiate a new graph
 var Graph = function() {
   this.storage = {};
@@ -14,8 +14,8 @@ Graph.prototype.addNode = function(value) {
 // Return a boolean value indicating if the value passed to contains is represented in the graph.
 Graph.prototype.contains = function(value) {
   var storage = this.storage;
-  for (var key in storage){
-    if (storage[key].value === value) return true;
+  for (var key in storage) {
+    if (storage[key].value === value) { return true; }
   }
   return false;
 };
@@ -42,7 +42,7 @@ Graph.prototype.addEdge = function(fromNode, toNode) {
   var endNode = this.storage[toNode];
   if (beginningNode && endNode) {
     beginningNode.edges[toNode] = true;
-    endNode.edges[fromNode]=true;    
+    endNode.edges[fromNode] = true;    
   }
 };
 
@@ -50,7 +50,7 @@ Graph.prototype.addEdge = function(fromNode, toNode) {
 Graph.prototype.removeEdge = function(fromNode, toNode) {
   var beginningNode = this.storage[fromNode];
   var endNode = this.storage[toNode];
-    if (beginningNode && endNode) {
+  if (beginningNode && endNode) {
     beginningNode.edges[toNode] = false;
     endNode.edges[fromNode] = false;    
   }
@@ -58,12 +58,10 @@ Graph.prototype.removeEdge = function(fromNode, toNode) {
 
 // Pass in a callback which will be executed on each node of the graph.
 Graph.prototype.forEachNode = function(cb) {
-  var storage = this.storage
+  var storage = this.storage;
   for (var key in storage) {
-    console.log(key)
     cb(key);
   }
-  console.log(storage)
 };
 
 
