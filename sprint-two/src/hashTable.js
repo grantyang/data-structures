@@ -2,9 +2,8 @@
 
 var HashTable = function() {
   this._limit = 8;
-  this._storage = LimitedArray(this._limit);
-  this.collision = {
-  };
+  // this._storage = LimitedArray(this._limit);
+  this.collision = [];
 };
 
 HashTable.prototype.insert = function(k, v) {
@@ -12,10 +11,10 @@ HashTable.prototype.insert = function(k, v) {
   if (this.collision[index] === undefined) {
     this.collision[index] = {};
     this.collision[index][k] = v;  
-    this._storage.set(index, v);
+    // this._storage.set(index, v);
   } else {
     this.collision[index][k] = v;  
-    this._storage.set(index, v);
+    // this._storage.set(index, v);
   } 
 };
 
