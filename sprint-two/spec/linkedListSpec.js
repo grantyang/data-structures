@@ -21,14 +21,30 @@ describe('linkedList', function() {
     expect(linkedList.tail.value).to.equal(4);
     linkedList.addToTail(5);
     expect(linkedList.tail.value).to.equal(5);
+    linkedList.addToTail(6);
+    linkedList.addToTail(7);
+    linkedList.addToTail(8);
+    expect(linkedList.tail.value).to.equal(8);
+    expect(linkedList.tail.prev.value).to.equal(7);
+    
   });
 
   it('should remove the head from the list when removeHead is called', function() {
     linkedList.addToTail(4);
     linkedList.addToTail(5);
+    linkedList.addToTail(6);
     expect(linkedList.head.value).to.equal(4);
     linkedList.removeHead();
     expect(linkedList.head.value).to.equal(5);
+  });  
+  
+  it('should remove the tail from the list when removeHead is called', function() {
+    linkedList.addToTail(4);
+    linkedList.addToTail(5);
+    linkedList.addToTail(6);
+    expect(linkedList.tail.value).to.equal(6);
+    linkedList.removeTail();
+    expect(linkedList.tail.value).to.equal(5);
   });
 
   it('should return the value of the former head when removeHead is called', function() {
@@ -52,10 +68,13 @@ describe('linkedList', function() {
   });
 
   it('should designate a new head when newHead is called', function() {
-    linkedList.addToTail(4);
-    linkedList.addToTail(5);
+
     linkedList.addToHead(1);
-    expect(linkedList.head.value).to.equal(1);
+    linkedList.addToHead(5);
+    linkedList.addToHead(9);
+    expect(linkedList.head.value).to.equal(9);
+    expect(linkedList.head.next.value).to.equal(5);
+    
   });
 
   // add more tests here to test the functionality of linkedList

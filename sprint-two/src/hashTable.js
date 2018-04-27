@@ -47,7 +47,6 @@ HashTable.prototype.remove = function(k) {
 
 HashTable.prototype.count = function() {
   var count = 0;
-  console.log(this.collision);
   for (var bucket of this.collision) {
     if (bucket) {
       count += bucket.length;
