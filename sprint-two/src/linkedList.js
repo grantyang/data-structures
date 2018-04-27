@@ -15,6 +15,17 @@ var LinkedList = function() {
     }
   };
 
+  list.addToHead = function(value) {
+    var newNode = Node(value);
+    if (list.head) {
+      newNode.next = list.head;
+      list.head = newNode;
+    } else {
+      list.head = newNode;
+      list.tail = newNode;
+    }
+  };
+
   list.removeHead = function() {
     var oldHead = list.head;
     list.head = list.head.next;

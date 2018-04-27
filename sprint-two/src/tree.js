@@ -14,12 +14,15 @@ treeMethods.addChild = function(value) {
   this.children.push(Tree(value));
 };
 
+treeMethods.countDirectChildren = function() {
+  return this.children.length;
+};
+
 treeMethods.contains = function(target) {
-  let children = this.children;
-  for (let i = 0; i < children.length; i++) {
-    let child = children[i];
+  for (let i = 0; i < this.countDirectChildren(); i++) {
+    let child = this.children[i];
     if (child.value === target) { return true; }
-    if (child.children.length > 0) {
+    if (child.countDirectChildren() > 0) {
       if (child.contains(target)) { return true; }
     }
   }

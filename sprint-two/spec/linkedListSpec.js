@@ -51,5 +51,12 @@ describe('linkedList', function() {
     expect(linkedList.contains(4)).to.equal(false);
   });
 
+  it('should designate a new head when newHead is called', function() {
+    linkedList.addToTail(4);
+    linkedList.addToTail(5);
+    linkedList.addToHead(1);
+    expect(linkedList.head.value).to.equal(1);
+  });
+
   // add more tests here to test the functionality of linkedList
 });

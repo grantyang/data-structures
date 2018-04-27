@@ -15,9 +15,13 @@ setPrototype.contains = function(item) {
 };
 
 setPrototype.remove = function(item) {
-  this._storage[item] = false;
+  delete this._storage[item];
 };
 
+
+setPrototype.count = function() {
+  return Object.keys(this._storage).length;
+};
 /*
  * Complexity: What is the time complexity of the above functions?
  */
