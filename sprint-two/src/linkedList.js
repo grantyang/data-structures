@@ -29,7 +29,6 @@ var LinkedList = function() {
   };
 
   list.removeHead = function() {
-    console.log(list.head);
     var oldHead = list.head;
     if (oldHead.next) {
       oldHead.next.prev = null;

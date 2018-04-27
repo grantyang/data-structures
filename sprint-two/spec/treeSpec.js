@@ -51,4 +51,24 @@ describe('tree', function() {
   });
 
 
+  it('should detect parent of node', function() {
+    tree.addChild(5);
+    tree.addChild(6);
+    tree.children[0].addChild(7);
+    tree.children[1].addChild(8);
+    console.log(tree.children[0][0]);
+    expect(tree.children[0].children[0].parent.value).to.equal(5);
+  });
+
+  it('should remove parent of node correctly', function() {
+    tree.addChild(5);
+    tree.addChild(6);
+    tree.children[0].addChild(7);
+    tree.children[1].addChild(8);
+    expect(tree.children[0].children.length).to.equal(1);
+    tree.children[0].children[0].removeFromParent();
+    expect(tree.children[0].children.length).to.equal(0);
+  });
+
+
 });
