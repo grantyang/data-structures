@@ -9,32 +9,55 @@ var HashTable = function() {
 HashTable.prototype.insert = function(k, v) {
   var index = getIndexBelowMaxForKey(k, this._limit);
   if (this.collision[index] === undefined) {
-    this.collision[index] = {};
-    this.collision[index][k] = v;  
-    // this._storage.set(index, v);
+    this.collision[index] = [];
+    this.collision[index].push([k, v]);  
+  } else if (checkIfKey(this.collision[index], k)) {
+    for (var tuple of this.collision[index]) {
+      if (tuple[0] === k) {
+        tuple[1] = v;
+      }
+    }
   } else {
-    this.collision[index][k] = v;  
-    // this._storage.set(index, v);
+    this.collision[index].push([k, v]);  
   } 
 };
 
+
 HashTable.prototype.retrieve = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  return this.collision[index][k];
+  var bucket = this.collision[index];
+  console.log('bucket contains ' + bucket)
+  for (var tuple of bucket){
+    if (tuple[0] === k){
+      return tuple[1];
+    }
+  }
   // return this._storage.get(index);
   
 };
 
 HashTable.prototype.remove = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  delete this.collision[index][k];
+  var bucket = this.collision[index];
+  for (var i = 0; i < bucket.length; i++) {
+    if (bucket[i][0] === k){
+      bucket.splice(i, 1);
+    }
+  }
   // this._storage.set(index, undefined);
 };
 
+var checkIfKey = function (arr,k) {  /// arr = [[k1,v1],[k2,v2]]
+  let position = false;
+  arr.forEach(function(tuple) {
+    if(tuple[0] === k) {
+      position = true;
+    }
+  })
+  return position;
+}
 
 
 /*
  * Complexity: What is the time complexity of the above functions?
  */
-
-
