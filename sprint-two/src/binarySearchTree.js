@@ -38,6 +38,15 @@ var BinarySearchTree = function(value) {
       this.right.depthFirstLog(cb);    
     }
   };
+  
+  root.sum = function () {
+    var total = 0;
+    var func = function(value) { 
+      total += value;
+    };
+    this.depthFirstLog(func);
+    return total;
+  };
   return root;
 };
 

@@ -22,6 +22,15 @@ describe('hashTable', function() {
     hashTable.insert('Steven', 'Spielberg');
     expect(hashTable.retrieve('Steven')).not.to.equal('Seagal');
   });
+  
+  it('should count total number of inserted values', function() {
+    hashTable.insert('Steven', 'Spielberg');
+    hashTable.insert('1', '2');
+    hashTable.insert('3', '4');
+    hashTable.insert('5', 'Spielberg');
+    hashTable.insert('Steven', '999');
+    expect(hashTable.count()).to.equal(4);
+  });
 
   it('should overwrite values that have the same key', function() {
     hashTable.insert('Bob', 'Loblaw');

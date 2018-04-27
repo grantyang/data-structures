@@ -26,36 +26,45 @@ HashTable.prototype.insert = function(k, v) {
 HashTable.prototype.retrieve = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
   var bucket = this.collision[index];
-  console.log('bucket contains ' + bucket)
-  for (var tuple of bucket){
-    if (tuple[0] === k){
+  for (var tuple of bucket) {
+    if (tuple[0] === k) {
       return tuple[1];
     }
   }
   // return this._storage.get(index);
-  
 };
 
 HashTable.prototype.remove = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
   var bucket = this.collision[index];
   for (var i = 0; i < bucket.length; i++) {
-    if (bucket[i][0] === k){
+    if (bucket[i][0] === k) {
       bucket.splice(i, 1);
     }
   }
   // this._storage.set(index, undefined);
 };
 
-var checkIfKey = function (arr,k) {  /// arr = [[k1,v1],[k2,v2]]
+HashTable.prototype.count = function() {
+  var count = 0;
+  console.log(this.collision);
+  for (var bucket of this.collision) {
+    if (bucket) {
+      count += bucket.length;
+    }
+  }
+  return count;
+};
+
+var checkIfKey = function (arr, k) {
   let position = false;
   arr.forEach(function(tuple) {
-    if(tuple[0] === k) {
+    if (tuple[0] === k) {
       position = true;
     }
-  })
+  });
   return position;
-}
+};
 
 
 /*
