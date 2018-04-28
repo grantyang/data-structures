@@ -1,4 +1,4 @@
-var Tree = function(value) { 
+var Tree = function(value) {
   var newTree = Object.create(treeMethods);
   newTree.value = value;
 
@@ -24,9 +24,13 @@ treeMethods.countDirectChildren = function() {
 treeMethods.contains = function(target) {
   for (let i = 0; i < this.countDirectChildren(); i++) {
     let child = this.children[i];
-    if (child.value === target) { return true; }
+    if (child.value === target) {
+      return true;
+    }
     if (child.countDirectChildren() > 0) {
-      if (child.contains(target)) { return true; }
+      if (child.contains(target)) {
+        return true;
+      }
     }
   }
   return false;
@@ -38,12 +42,16 @@ treeMethods.removeFromParent = function() {
   this.parent = null;
 };
 
-
-
-
-
-
-
+treeMethods.traverse = function(cb) {
+  if (this.value !== undefined) {
+    cb(this.value);
+  }
+  if (this.children.length > 0) {
+    for (var child of this.children) {
+      child.traverse(cb);
+    }
+  }
+};
 
 /*
  * Complexity: What is the time complexity of the above functions?
