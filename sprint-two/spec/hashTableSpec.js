@@ -1,7 +1,14 @@
 describe('hashTable', function() {
   var hashTable;
-  var people = [['Steven', 'Tyler'], ['George', 'Harrison'], ['Mr.', 'Doob'], ['Dr.', 'Sunshine'], ['John', 'Resig'], ['Brendan', 'Eich'], ['Alan', 'Turing']];
-
+  var people = [
+    ['Steven', 'Tyler'],
+    ['George', 'Harrison'],
+    ['Mr.', 'Doob'],
+    ['Dr.', 'Sunshine'],
+    ['John', 'Resig'],
+    ['Brendan', 'Eich'],
+    ['Alan', 'Turing']
+  ];
 
   beforeEach(function() {
     hashTable = new HashTable();
@@ -22,11 +29,11 @@ describe('hashTable', function() {
     hashTable.insert('Steven', 'Spielberg');
     expect(hashTable.retrieve('Steven')).not.to.equal('Seagal');
   });
-  
+
   it('should count total number of inserted values', function() {
     hashTable.insert('Steven', 'Spielberg');
     hashTable.insert('1', '2');
-    hashTable.insert('3', '4');
+    hashTable.insert('a3', '4');
     hashTable.insert('5', 'Spielberg');
     hashTable.insert('Steven', '999');
     expect(hashTable.count()).to.equal(4);
@@ -48,7 +55,9 @@ describe('hashTable', function() {
     var v1 = 'val1';
     var v2 = 'val2';
     var oldHashFunction = window.getIndexBelowMaxForKey;
-    window.getIndexBelowMaxForKey = function() { return 0; };
+    window.getIndexBelowMaxForKey = function() {
+      return 0;
+    };
     hashTable.insert(v1, v1);
     hashTable.insert(v2, v2);
     expect(hashTable.retrieve(v1)).to.equal(v1);
@@ -57,7 +66,7 @@ describe('hashTable', function() {
   });
 
   // (Advanced! Remove the extra "x" when you want the following tests to run)
-  xit ('should double in size when needed', function() {
+  it('should double in size when needed', function() {
     _.each(people, function(person) {
       var firstName = person[0];
       var lastName = person[1];
@@ -67,7 +76,7 @@ describe('hashTable', function() {
     expect(hashTable._limit).to.equal(16);
   });
 
-  xit ('should halve in size when needed', function() {
+  it('should halve in size when needed', function() {
     _.each(people, function(person) {
       var firstName = person[0];
       var lastName = person[1];
